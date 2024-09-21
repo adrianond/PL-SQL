@@ -20,6 +20,13 @@ SELECT object_name, object_type, last_ddl_time, timestamp, status
 FROM   user_objects
 WHERE  status = 'INVALID';
 
+-- Consultando Database DML Triggers pelo Dicionário de Dados
+
+SELECT *
+FROM   user_triggers
+WHERE  table_name = 'EMPLOYEES'  AND
+       table_owner = 'HR';
+
 -- Consultando o Código Fonte de Procedures e Funções  do seu usuário
 
 DESC user_source
@@ -219,6 +226,22 @@ END;
 
 -- Tente debugar novamente, agora deve funcionar ok!
 
+***************************************************************************
 
+-- Desabilitando Database DML Triggers
+
+ALTER TRIGGER B_IUD_VALIDA_HORARIO_EMPLOYEES_S_TRG disable;
+
+-- Habilitando Database DML Triggers
+
+ALTER TRIGGER B_IUD_VALIDA_HORARIO_EMPLOYEES_S_TRG enable;
+
+-- Desabilitando todas Database DML Triggers da tabela employees
+
+ALTER TABLE employees DISABLE ALL TRIGGERS;
+
+-- Habilitando todas Database DML Triggers da tabela employees
+
+ALTER TABLE employees ENABLE ALL TRIGGERS;
 
 

@@ -72,6 +72,7 @@ SET    salary = salary * 1.5;
 -- Desabilitando a Trigger B_IUD_VALIDA_HORARIO_EMPLOYEES_S_TRG para poder testar a Trigger fora do horário comercial
 
 alter trigger B_IUD_VALIDA_HORARIO_EMPLOYEES_S_TRG disable;
+alter trigger B_IUD_VALIDA_HORARIO_EMPLOYEES_S_TRG enable;
 
 -- Testando a TRIGGER
 
