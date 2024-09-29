@@ -1,4 +1,4 @@
-SET SERVEROUTPUT ON
+SET SERVEROUTPUT ON --HABILITAR O BUFFER DE SAIDA DA PACKAGE DBMS_OUTPUT
 DECLARE 
   MANAGER_COUNT NUMBER(2);
   
@@ -226,5 +226,28 @@ FOR i IN vinicio..vfim  LOOP
   DBMS_OUTPUT.PUT_LINE('Número = ' || to_char(i) );
     EXIT WHEN i = 8;
 END LOOP;
+END;
+
+-------------------------------------------------------------------------------
+
+-- Criando um PL/SQL Record 
+DECLARE
+TYPE  employee_record_type IS RECORD 
+          (employee_id   employees.employee_id%type,
+           first_name    employees.first_name%type,
+           last_name     employees.last_name%type,
+           email         employees.email%type,
+           phone_number  employees.phone_number%type);
+employee_record  employee_record_type; 
+
+BEGIN
+SELECT  employee_id, first_name, last_name, email, phone_number
+INTO    employee_record
+FROM    employees
+WHERE   employee_id = 100;
+DBMS_OUTPUT.PUT_LINE(employee_record.employee_id || ' - ' || 
+                     employee_record.first_name || ' - ' || 
+                     employee_record.last_name || ' - ' || 
+                     employee_record.phone_number);
 END;
  

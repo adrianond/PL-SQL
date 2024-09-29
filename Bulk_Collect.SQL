@@ -26,8 +26,8 @@ END;
 
 -- Nested Table of Records - Bulk Collect
 
-SET SERVEROUTPUT ON
-SET VERIFY OFF
+SET SERVEROUTPUT ON --HABILITAR O BUFFER DE SAIDA DA PACKAGE DBMS_OUTPUT
+SET VERIFY OFF 
 DECLARE
   TYPE employees_table_type IS TABLE OF employees%rowtype;
   employees_table  employees_table_type := employees_table_type();
@@ -110,7 +110,7 @@ BEGIN
   FROM employees;
   
   DBMS_OUTPUT.PUT_LINE('Linhas recuperadas: ' || employee_id_table.COUNT);
-  --FORALL TERMINA COM PONTO E VIRGULA, NÃO TEM END LOPP.
+  --FORALL TERMINA COM PONTO E VIRGULA, NÃO TEM LOPP.
   FORALL indice IN 1..employee_id_table.COUNT  -- FOR ALL empacota todos os UPDATES e envia o pacote em 1 única troca de contexto (Context Switch)
     UPDATE employees e
     SET    e.salary = e.salary * (1 + ppercentual / 100)
