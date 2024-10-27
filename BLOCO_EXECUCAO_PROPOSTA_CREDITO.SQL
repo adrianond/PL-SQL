@@ -1,32 +1,46 @@
 
 
 DECLARE 
-  v_proposta propostaType;
-  v_cliente clienteType;
-  v_telefones telefoneTypeTable;
+  V_PROPOSTA PROPOSTA_CREDITO_TYPE;
+  V_ENDERECO ENDERECO_PROPOSTA_CREDITO_TYPE;
+  V_CLIENTE CLIENTE_PROPOSTA_CREDITO_TYPE;
+  V_TELEFONES TELEFONE_PROPOSTA_CREDITO_TYPE_TABLE;
 BEGIN
   
-  v_telefones:= telefoneTypeTable(
-   telefoneType(null,'1','999999999','11'),
-   telefoneType(null,'2','99999999','11')
+   V_TELEFONES:= TELEFONE_PROPOSTA_CREDITO_TYPE_TABLE(
+   TELEFONE_PROPOSTA_CREDITO_TYPE(null,'1','999999999','11'),
+   TELEFONE_PROPOSTA_CREDITO_TYPE(null,'2','99999999','11')
   );
   
-  v_cliente:= clienteType (
+  V_ENDERECO:= ENDERECO_PROPOSTA_CREDITO_TYPE(
+  NULL,
+  'RUA DOS BOBOS',
+   0,
+   NULL,
+   '08161005',
+   'ATALAIA',
+   'SAO PAULO',
+   'SP'
+  );
+  
+  V_CLIENTE:= CLIENTE_PROPOSTA_CREDITO_TYPE (
    null,
    'ADRIANO DANTAS',
   '99999999999',
   '2755519X',
    null,
-   null, 
-   v_telefones
+   V_ENDERECO,
+   V_TELEFONES
   );
   
-  v_proposta:= propostaType(
+  V_PROPOSTA:= PROPOSTA_CREDITO_TYPE(
     null,
     'EMPRESTIMO',
     500,
     'ANALISE',
-    v_cliente
+    V_CLIENTE
   );
-  pck_proposta_credito.prc_cria_proposta(v_proposta);
+  
+  --CRIA PROPOSTA DE CRÉDITO
+  PCK_PROPOSTA_CREDITO.PRC_CRIA_PROPOSTA(V_PROPOSTA);
 END;
