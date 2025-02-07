@@ -8,7 +8,7 @@ DECLARE
 BEGIN
   
    V_TELEFONES:= TELEFONE_PROPOSTA_CREDITO_TYPE_TABLE(
-   TELEFONE_PROPOSTA_CREDITO_TYPE(null,'1','999999999','11'),
+   TELEFONE_PROPOSTA_CREDITO_TYPE(null,'1','888888888','11'),
    TELEFONE_PROPOSTA_CREDITO_TYPE(null,'2','99999999','11')
   );
   
@@ -25,9 +25,9 @@ BEGIN
   
   V_CLIENTE:= CLIENTE_PROPOSTA_CREDITO_TYPE (
    null,
-   'ADRIANO DANTAS',
-  '99999999999',
-  '2755519X',
+   'Carlos Teste',
+  '83393494066',
+  '289556417',
    null,
    V_ENDERECO,
    V_TELEFONES
@@ -35,12 +35,14 @@ BEGIN
   
   V_PROPOSTA:= PROPOSTA_CREDITO_TYPE(
     null,
-    'EMPRESTIMO',
+    'Emprestimo Consignado novo',
     500,
-    'ANALISE',
+    'Preenchimento',
     V_CLIENTE
   );
   
   --CRIA PROPOSTA DE CRÉDITO
+ 
   PCK_PROPOSTA_CREDITO.PRC_CRIA_PROPOSTA(V_PROPOSTA);
+  --PRC_LOG_ERROR('PCK_PROPOSTA_CREDITO', 'PRC_CRIA_PROPOSTA', 'Teste de mensagem de erro: valor do campo maior que o permitido aqui');
 END;
