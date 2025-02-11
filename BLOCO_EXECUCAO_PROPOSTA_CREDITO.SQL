@@ -44,5 +44,7 @@ BEGIN
   --CRIA PROPOSTA DE CRÉDITO
  
   PCK_PROPOSTA_CREDITO.PRC_CRIA_PROPOSTA(V_PROPOSTA);
+  
+  
   --PRC_LOG_ERROR('PCK_PROPOSTA_CREDITO', 'PRC_CRIA_PROPOSTA', 'Teste de mensagem de erro: valor do campo maior que o permitido aqui');
 END;
